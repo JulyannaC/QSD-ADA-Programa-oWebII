@@ -21,7 +21,8 @@ public class AlunoService implements IAlunoService {
                 id++,
                 alunoDto.getNome(),
                 alunoDto.getMatricula(),
-                alunoDto.getTurma()
+                alunoDto.getTurma(),
+                null
         );
         alunos.add(a);
         return a;
@@ -49,7 +50,7 @@ public class AlunoService implements IAlunoService {
             return null;
         }
         alunos.remove(aluno);
-        AlunoDto a = new AlunoDto(aluno.getId(), pedido.getNome(), pedido.getMatricula(), pedido.getTurma());
+        AlunoDto a = new AlunoDto(aluno.getId(), pedido.getNome(), pedido.getMatricula(), pedido.getTurma(), null);
         alunos.add(a);
         return a;
     }

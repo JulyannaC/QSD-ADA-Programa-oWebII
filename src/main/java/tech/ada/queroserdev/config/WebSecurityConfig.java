@@ -52,12 +52,18 @@ public class WebSecurityConfig {
                         new AntPathRequestMatcher("/v3/api-docs/**"),
                         new AntPathRequestMatcher("/h2-console/**")
                 ))).permitAll()
+                        .requestMatchers(antMatcher(HttpMethod.GET, "/aluno/**")).permitAll()
                         .requestMatchers(antMatcher(HttpMethod.GET, "/professor/**")).permitAll())
-                .authorizeHttpRequests(r -> r.requestMatchers(antMatcher(HttpMethod.POST, "/professor/**")).hasAnyRole("ADMIN")
-                        .anyRequest().authenticated())
+                .authorizeHttpRequests(r -> r
+                        .requestMatchers(antMatcher(HttpMethod.POST, "/professor/**")).hasAnyRole("ADMIN")
+                        .requestMatchers(antMatcher(HttpMethod.POST, "/aluno/**")).hasAnyRole("ADMIN")
+                        .requestMatchers(antMatcher(HttpMethod.PUT, "/aluno/**")).hasAnyRole("ADMIN")
+                        .requestMatchers(antMatcher(HttpMethod.DELETE, "/aluno/**")).hasAnyRole("ADMIN")
+                    .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
 
         return httpSecurity.build();
     }
 }
+

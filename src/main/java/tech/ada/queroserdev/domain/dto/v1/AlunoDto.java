@@ -2,6 +2,7 @@ package tech.ada.queroserdev.domain.dto.v1;
 import jakarta.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Null;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,4 +24,6 @@ public class AlunoDto {
     private int matricula;
     @NotBlank
     private String turma;
+    @Null
+    private String activity;
 }
